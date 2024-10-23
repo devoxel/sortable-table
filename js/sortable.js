@@ -19,30 +19,27 @@
     if (el.addEventListener != null) {
       return el.addEventListener(event, handler, false);
     } else {
-      return el.attachEvent("on" + event, handler);
+      return el.attachEvent(`on${event}`, handler);
     }
   };
 
   sortable = {
-    init: function(options) {
-      var table, tables, _i, _len, _results;
-      if (options == null) {
-        options = {};
-      }
+    init: function(options = {}) {
+      var j, len, results, table, tables;
       if (options.selector == null) {
         options.selector = SELECTOR;
       }
       tables = document.querySelectorAll(options.selector);
-      _results = [];
-      for (_i = 0, _len = tables.length; _i < _len; _i++) {
-        table = tables[_i];
-        _results.push(sortable.initTable(table));
+      results = [];
+      for (j = 0, len = tables.length; j < len; j++) {
+        table = tables[j];
+        results.push(sortable.initTable(table));
       }
-      return _results;
+      return results;
     },
     initTable: function(table) {
-      var i, th, ths, _i, _len, _ref;
-      if (((_ref = table.tHead) != null ? _ref.rows.length : void 0) !== 1) {
+      var i, j, len, ref, th, ths;
+      if (((ref = table.tHead) != null ? ref.rows.length : void 0) !== 1) {
         return;
       }
       if (table.getAttribute('data-sortable-initialized') === 'true') {
@@ -50,7 +47,7 @@
       }
       table.setAttribute('data-sortable-initialized', 'true');
       ths = table.querySelectorAll('th');
-      for (i = _i = 0, _len = ths.length; _i < _len; i = ++_i) {
+      for (i = j = 0, len = ths.length; j < len; i = ++j) {
         th = ths[i];
         if (th.getAttribute('data-sortable') !== 'false') {
           sortable.setupClickableTH(table, th, i);
@@ -59,11 +56,11 @@
       return table;
     },
     setupClickableTH: function(table, th, i) {
-      var eventHandled, eventName, onClick, type, _i, _len, _results;
+      var eventHandled, eventName, j, len, onClick, results, type;
       type = sortable.getColumnType(table, i);
       eventHandled = false;
       onClick = function(e) {
-        var compare, fragment, item, newSortedDirection, position, row, rowArray, sorted, sortedDirection, tBody, ths, value, _compare, _i, _j, _k, _l, _len, _len1, _len2, _len3, _len4, _m, _ref, _ref1;
+        var _compare, compare, fragment, item, j, k, l, len, len1, len2, len3, len4, m, n, newSortedDirection, position, ref, ref1, row, rowArray, sorted, sortedDirection, tBody, ths, value;
         if (eventHandled) {
           return;
         }
@@ -79,8 +76,8 @@
           newSortedDirection = type.defaultSortDirection;
         }
         ths = this.parentNode.querySelectorAll('th');
-        for (_i = 0, _len = ths.length; _i < _len; _i++) {
-          th = ths[_i];
+        for (j = 0, len = ths.length; j < len; j++) {
+          th = ths[j];
           th.setAttribute('data-sorted', 'false');
           th.removeAttribute('data-sorted-direction');
         }
@@ -106,9 +103,9 @@
               return _compare(a[0], b[0]);
             }
           };
-          _ref = tBody.rows;
-          for (position = _j = 0, _len1 = _ref.length; _j < _len1; position = ++_j) {
-            row = _ref[position];
+          ref = tBody.rows;
+          for (position = k = 0, len1 = ref.length; k < len1; position = ++k) {
+            row = ref[position];
             value = sortable.getNodeValue(row.cells[i]);
             if (type.comparator != null) {
               value = type.comparator(value);
@@ -116,22 +113,26 @@
             rowArray.push([value, row, position]);
           }
           rowArray.sort(compare);
+          // use document fragment for performance
+          // when sorting large tables (avoid recalculating styles)
           fragment = document.createDocumentFragment();
-          for (_k = 0, _len2 = rowArray.length; _k < _len2; _k++) {
-            row = rowArray[_k];
+          for (l = 0, len2 = rowArray.length; l < len2; l++) {
+            row = rowArray[l];
             fragment.appendChild(row[1]);
           }
           tBody.appendChild(fragment);
         } else {
-          _ref1 = tBody.rows;
-          for (_l = 0, _len3 = _ref1.length; _l < _len3; _l++) {
-            item = _ref1[_l];
+          ref1 = tBody.rows;
+          for (m = 0, len3 = ref1.length; m < len3; m++) {
+            item = ref1[m];
             rowArray.push(item);
           }
           rowArray.reverse();
+          // use document fragment for performance
+          // when sorting large tables (avoid recalculating styles)
           fragment = document.createDocumentFragment();
-          for (_m = 0, _len4 = rowArray.length; _m < _len4; _m++) {
-            row = rowArray[_m];
+          for (n = 0, len4 = rowArray.length; n < len4; n++) {
+            row = rowArray[n];
             fragment.appendChild(row);
           }
           tBody.appendChild(fragment);
@@ -142,26 +143,26 @@
           })) : void 0;
         }
       };
-      _results = [];
-      for (_i = 0, _len = clickEvents.length; _i < _len; _i++) {
-        eventName = clickEvents[_i];
-        _results.push(addEventListener(th, eventName, onClick));
+      results = [];
+      for (j = 0, len = clickEvents.length; j < len; j++) {
+        eventName = clickEvents[j];
+        results.push(addEventListener(th, eventName, onClick));
       }
-      return _results;
+      return results;
     },
     getColumnType: function(table, i) {
-      var row, specified, text, type, _i, _j, _len, _len1, _ref, _ref1, _ref2;
-      specified = (_ref = table.querySelectorAll('th')[i]) != null ? _ref.getAttribute('data-sortable-type') : void 0;
+      var j, k, len, len1, ref, ref1, ref2, row, specified, text, type;
+      specified = (ref = table.querySelectorAll('th')[i]) != null ? ref.getAttribute('data-sortable-type') : void 0;
       if (specified != null) {
         return sortable.typesObject[specified];
       }
-      _ref1 = table.tBodies[0].rows;
-      for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
-        row = _ref1[_i];
+      ref1 = table.tBodies[0].rows;
+      for (j = 0, len = ref1.length; j < len; j++) {
+        row = ref1[j];
         text = sortable.getNodeValue(row.cells[i]);
-        _ref2 = sortable.types;
-        for (_j = 0, _len1 = _ref2.length; _j < _len1; _j++) {
-          type = _ref2[_j];
+        ref2 = sortable.types;
+        for (k = 0, len1 = ref2.length; k < len1; k++) {
+          type = ref2[k];
           if (type.match(text)) {
             return type;
           }
@@ -184,15 +185,15 @@
       return node.textContent.replace(trimRegExp, '');
     },
     setupTypes: function(types) {
-      var type, _i, _len, _results;
+      var j, len, results, type;
       sortable.types = types;
       sortable.typesObject = {};
-      _results = [];
-      for (_i = 0, _len = types.length; _i < _len; _i++) {
-        type = types[_i];
-        _results.push(sortable.typesObject[type.name] = type);
+      results = [];
+      for (j = 0, len = types.length; j < len; j++) {
+        type = types[j];
+        results.push(sortable.typesObject[type.name] = type);
       }
-      return _results;
+      return results;
     }
   };
 
@@ -204,9 +205,12 @@
         return a.match(numberRegExp);
       },
       comparator: function(a) {
-        return parseFloat(a.replace(/[^0-9.-]/g, ''), 10) || 0;
+        return parseFloat(a.replace(/[^0-9.-]/g,
+    ''),
+    10) || 0;
       }
-    }, {
+    },
+    {
       name: 'date',
       defaultSortDirection: 'ascending',
       reverse: true,
@@ -216,13 +220,15 @@
       comparator: function(a) {
         return Date.parse(a) || 0;
       }
-    }, {
+    },
+    {
       name: 'alpha',
       defaultSortDirection: 'ascending',
       match: function() {
         return true;
       },
-      compare: function(a, b) {
+      compare: function(a,
+    b) {
         return a.localeCompare(b);
       }
     }

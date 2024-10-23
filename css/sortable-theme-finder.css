@@ -20,7 +20,7 @@ table[data-sortable] th:not([data-sortable="false"]) {
   -ms-user-select: none;
   -o-user-select: none;
   user-select: none;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
   cursor: pointer;
 }
@@ -59,8 +59,8 @@ table[data-sortable].sortable-theme-finder {
   font-family: "Lucida Grande", sans-serif;
   font-size: 12px;
   line-height: 18px;
-  color: black;
-  background: white;
+  color: #000;
+  background: #fff;
   border: 1px solid #cfcfcf;
 }
 /* line 14, ../sass/sortable-theme-finder.sass */
@@ -69,13 +69,14 @@ table[data-sortable].sortable-theme-finder th, table[data-sortable].sortable-the
 }
 /* line 17, ../sass/sortable-theme-finder.sass */
 table[data-sortable].sortable-theme-finder thead th {
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIvPjxzdG9wIG9mZnNldD0iNTAlIiBzdG9wLWNvbG9yPSIjZjZmNmY2Ii8+PHN0b3Agb2Zmc2V0PSI1MCUiIHN0b3AtY29sb3I9IiNmMGYwZjAiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlZWVlZWUiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=');
+  background-size: 100%;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(50%, #f6f6f6), color-stop(50%, #f0f0f0), color-stop(100%, #eeeeee));
-  background-image: -webkit-linear-gradient(#ffffff 0%, #f6f6f6 50%, #f0f0f0 50%, #eeeeee 100%);
   background-image: -moz-linear-gradient(#ffffff 0%, #f6f6f6 50%, #f0f0f0 50%, #eeeeee 100%);
-  background-image: -o-linear-gradient(#ffffff 0%, #f6f6f6 50%, #f0f0f0 50%, #eeeeee 100%);
+  background-image: -webkit-linear-gradient(#ffffff 0%, #f6f6f6 50%, #f0f0f0 50%, #eeeeee 100%);
   background-image: linear-gradient(#ffffff 0%, #f6f6f6 50%, #f0f0f0 50%, #eeeeee 100%);
   background-color: #f0f0f0;
-  border-bottom: 1px solid #cccccc;
+  border-bottom: 1px solid #ccc;
   font-weight: normal;
 }
 /* line 23, ../sass/sortable-theme-finder.sass */
@@ -89,31 +90,32 @@ table[data-sortable].sortable-theme-finder th:after {
 }
 /* line 32, ../sass/sortable-theme-finder.sass */
 table[data-sortable].sortable-theme-finder th[data-sorted="true"] {
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2M1ZTJmNiIvPjxzdG9wIG9mZnNldD0iNTAlIiBzdG9wLWNvbG9yPSIjODBjMWYwIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjYjhlN2Y1Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');
+  background-size: 100%;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #c5e2f6), color-stop(50%, #80c1f0), color-stop(100%, #b8e7f5));
-  background-image: -webkit-linear-gradient(#c5e2f6 0%, #80c1f0 50%, #b8e7f5 100%);
   background-image: -moz-linear-gradient(#c5e2f6 0%, #80c1f0 50%, #b8e7f5 100%);
-  background-image: -o-linear-gradient(#c5e2f6 0%, #80c1f0 50%, #b8e7f5 100%);
+  background-image: -webkit-linear-gradient(#c5e2f6 0%, #80c1f0 50%, #b8e7f5 100%);
   background-image: linear-gradient(#c5e2f6 0%, #80c1f0 50%, #b8e7f5 100%);
-  -webkit-background-size: 28px 100%;
   -moz-background-size: 28px 100%;
   -o-background-size: 28px 100%;
+  -webkit-background-size: 28px 100%;
   background-size: 28px 100%;
-  -webkit-box-shadow: inset 1px 0 #7eb3d3, inset -1px 0 #7eb3d3;
   -moz-box-shadow: inset 1px 0 #7eb3d3, inset -1px 0 #7eb3d3;
+  -webkit-box-shadow: inset 1px 0 #7eb3d3, inset -1px 0 #7eb3d3;
   box-shadow: inset 1px 0 #7eb3d3, inset -1px 0 #7eb3d3;
   border-bottom-color: #7eb3d3;
   background-color: #78c0f0;
 }
 /* line 39, ../sass/sortable-theme-finder.sass */
 table[data-sortable].sortable-theme-finder th[data-sorted="true"]:first-child {
-  -webkit-box-shadow: inset -1px 0 #7eb3d3;
   -moz-box-shadow: inset -1px 0 #7eb3d3;
+  -webkit-box-shadow: inset -1px 0 #7eb3d3;
   box-shadow: inset -1px 0 #7eb3d3;
 }
 /* line 42, ../sass/sortable-theme-finder.sass */
 table[data-sortable].sortable-theme-finder th[data-sorted="true"]:last-child {
-  -webkit-box-shadow: inset 1px 0 #7eb3d3;
   -moz-box-shadow: inset 1px 0 #7eb3d3;
+  -webkit-box-shadow: inset 1px 0 #7eb3d3;
   box-shadow: inset 1px 0 #7eb3d3;
 }
 /* line 45, ../sass/sortable-theme-finder.sass */
