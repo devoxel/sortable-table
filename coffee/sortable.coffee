@@ -154,7 +154,8 @@ sortable.setupTypes [{
   compare: (a, b) -> a.localeCompare b
 }]
 
-setTimeout sortable.init, 0
+onLoad = (ev) -> setTimeout sortable.init, 0
+document.addEventListener "DOMContentLoaded", onLoad
 
 if typeof define is 'function' and define.amd
   define -> sortable

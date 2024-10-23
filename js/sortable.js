@@ -1,5 +1,5 @@
 (function() {
-  var SELECTOR, addEventListener, clickEvents, numberRegExp, sortable, touchDevice, trimRegExp;
+  var SELECTOR, addEventListener, clickEvents, numberRegExp, onLoad, sortable, touchDevice, trimRegExp;
 
   SELECTOR = 'table[data-sortable]';
 
@@ -234,7 +234,11 @@
     }
   ]);
 
-  setTimeout(sortable.init, 0);
+  onLoad = function(ev) {
+    return setTimeout(sortable.init, 0);
+  };
+
+  document.addEventListener("DOMContentLoaded", onLoad);
 
   if (typeof define === 'function' && define.amd) {
     define(function() {
