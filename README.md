@@ -1,4 +1,4 @@
-## sortable-table
+## sortof-sortable
 
 ### Overview
 
